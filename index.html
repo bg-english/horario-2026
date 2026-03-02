@@ -1,318 +1,579 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mr. Edoardo — Schedule 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Preview Móvil — Mr. Edoardo Schedule</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #F0EEE8;
-    --surface:   #FAFAF7;
-    --ink:       #1C1A15;
-    --rule:      #DDDAD2;
-    --muted:     #8C8880;
-
-    --c-9r:      #D45F2A;
-    --c-9r-bg:   #FDF0E8;
-    --c-8r:      #B8415A;
-    --c-8r-bg:   #FCEDF1;
-    --c-8b:      #2E7D8C;
-    --c-8b-bg:   #E7F4F6;
-    --c-7b:      #4A7C3F;
-    --c-7b-bg:   #EAF3E8;
-    --c-free:    #9C9790;
-    --c-free-bg: #F2F1EE;
-    --c-break:   #C4962A;
-    --c-break-bg:#FBF5E6;
-    --c-devo:    #7B5EA7;
-    --c-devo-bg: #F2EDF9;
-    --c-home:    #2A6B9C;
-    --c-home-bg: #E7F1FB;
-    --header-bg: #1C1A15;
-    --strip-bg:  #2E2B24;
+    --c-9r:#D45F2A; --c-9r-bg:#FDF0E8;
+    --c-8r:#B8415A; --c-8r-bg:#FCEDF1;
+    --c-8b:#2E7D8C; --c-8b-bg:#E7F4F6;
+    --c-7b:#4A7C3F; --c-7b-bg:#EAF3E8;
+    --c-fr:#9C9790; --c-fr-bg:#F2F1EE;
+    --c-br:#C4962A; --c-br-bg:#FBF5E6;
+    --c-dv:#6B3FCC; --c-dv-bg:#EDE0FF;
+    --c-hm:#2A6B9C; --c-hm-bg:#E7F1FB;
   }
-
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); }
 
-  .masthead {
-    background: var(--header-bg);
-    padding: 28px 52px 24px;
-    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  body {
+    font-family:'Outfit',sans-serif;
+    background:#0d0d0d;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center;
+    padding:36px 20px 60px; gap:24px;
   }
-  .masthead h1 {
-    font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800;
-    color: #fff; letter-spacing: -1px; line-height: 1;
+
+  .page-title {
+    color:#fff; font-size:0.7rem; letter-spacing:0.25em;
+    text-transform:uppercase; opacity:0.35; font-weight:500;
   }
-  .masthead h1 em { font-style: normal; color: var(--c-9r); }
-  .masthead-sub { font-size: 0.72rem; color: #7A7570; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 6px; font-weight: 500; }
-  .masthead-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-  .masthead-right .badge { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: #5A5550; letter-spacing: 0.12em; line-height: 1.9; }
-  .masthead-right .star-note { font-size: 0.68rem; color: var(--c-break); font-weight: 600; letter-spacing: 0.06em; }
 
-  .legend-strip {
-    background: var(--strip-bg); padding: 9px 52px;
-    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  .device-selector { display:flex; gap:8px; }
+  .dev-btn {
+    background:#1a1a1a; border:1px solid #2e2e2e; color:#666;
+    font-family:'Outfit',sans-serif; font-size:0.68rem;
+    letter-spacing:0.1em; text-transform:uppercase;
+    padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .2s;
   }
-  .legend-label { font-size: 0.62rem; color: #6A6560; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500; margin-right: 8px; }
-  .leg { font-size: 0.67rem; font-weight: 600; padding: 3px 10px 3px 8px; border-radius: 20px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 5px; }
-  .leg::before { content:''; width:7px; height:7px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-  .l-9r  { background:#3A2015; color: #F0915A; } .l-9r::before  { background: var(--c-9r); }
-  .l-8r  { background:#3A1522; color: #E8859A; } .l-8r::before  { background: var(--c-8r); }
-  .l-8b  { background:#12282D; color: #6CC0CB; } .l-8b::before  { background: var(--c-8b); }
-  .l-7b  { background:#152914; color: #7DC072; } .l-7b::before  { background: var(--c-7b); }
-  .l-free{ background:#272522; color: #807B75; } .l-free::before{ background: var(--c-free); }
+  .dev-btn.active, .dev-btn:hover { background:#D45F2A; border-color:#D45F2A; color:#fff; }
 
-  .wrapper { padding: 28px 52px 52px; }
-
-  .sec-title {
-    font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
-    margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
-    display: flex; align-items: center; gap: 12px;
+  .phone-wrap { position:relative; }
+  .phone-frame {
+    width:375px; height:760px;
+    background:#1a1a1a; border-radius:50px; padding:14px;
+    box-shadow: 0 0 0 1px #333, 0 0 0 3px #222,
+                0 40px 80px rgba(0,0,0,.85),
+                inset 0 0 0 1px #3a3a3a;
+    transition:all .4s cubic-bezier(.4,0,.2,1);
   }
-  .sec-title::before { content:''; width: 18px; height: 3px; background: var(--c-9r); border-radius: 2px; display:inline-block; flex-shrink: 0; }
+  .phone-frame.tablet  { width:520px; height:740px; border-radius:28px; padding:16px; }
+  .phone-frame.android { border-radius:28px; }
 
-  .sched { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 10px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
-  .sched thead th {
-    background: var(--ink); color: rgba(255,255,255,0.9);
-    font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700;
-    padding: 13px 14px; text-align: center; letter-spacing: 0.12em; text-transform: uppercase;
-    border-right: 1px solid #2E2B24;
+  .phone-screen {
+    width:100%; height:100%; background:#F0EEE8;
+    border-radius:38px; overflow:hidden; position:relative;
   }
-  .sched thead th.t-col { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: #5A5550; letter-spacing: 0.1em; width: 106px; }
-  .sched thead th .day-accent { display: block; width: 24px; height: 3px; border-radius: 2px; margin: 5px auto 0; }
-  .d-mon .day-accent { background: var(--c-9r); }
-  .d-tue .day-accent { background: var(--c-8r); }
-  .d-wed .day-accent { background: var(--c-8b); }
-  .d-thu .day-accent { background: var(--c-7b); }
-  .d-fri .day-accent { background: var(--c-devo); }
+  .phone-frame.tablet  .phone-screen,
+  .phone-frame.android .phone-screen { border-radius:14px; }
 
-  .sched tbody tr { border-bottom: 1px solid var(--rule); }
-  .sched tbody tr:last-child { border-bottom: none; }
-  .sched tbody tr:hover td:not(.tc) { filter: brightness(0.975); }
-
-  td.tc { background: var(--bg); padding: 10px 14px; border-right: 2px solid var(--rule); vertical-align: middle; white-space: nowrap; }
-  td.tc .per { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--ink); line-height: 1; }
-  td.tc .hrs { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: #4A4740; font-weight: 600; margin-top: 3px; letter-spacing: 0.03em; }
-
-  td.cc { padding: 9px 13px; border-right: 1px solid var(--rule); vertical-align: middle; position: relative; min-width: 128px; }
-  td.cc:last-child { border-right: none; }
-  td.cc .grade { font-size: 0.8rem; font-weight: 700; line-height: 1.2; letter-spacing: 0.02em; }
-  td.cc .subj { font-size: 0.95rem; color: #4A4740; margin-top: 1px; font-weight: 500; }
-  td.cc .act { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 5px; padding: 3px 9px; border-radius: 3px; display: inline-block; }
-  td.cc.me::after { content: '●'; position: absolute; top: 6px; right: 7px; font-size: 0.45rem; color: var(--c-break); opacity: 0.9; }
-
-  .g9r { background: var(--c-9r-bg); } .g9r .grade { color: var(--c-9r); } .g9r .act { background: rgba(212,95,42,0.18); color: #B84A18; }
-  .g8r { background: var(--c-8r-bg); } .g8r .grade { color: var(--c-8r); } .g8r .act { background: rgba(184,65,90,0.18); color: #9A2A44; }
-  .g8b { background: var(--c-8b-bg); } .g8b .grade { color: var(--c-8b); } .g8b .act { background: rgba(46,125,140,0.18); color: #1A6070; }
-  .g7b { background: var(--c-7b-bg); } .g7b .grade { color: var(--c-7b); } .g7b .act { background: rgba(74,124,63,0.18); color: #2E6025; }
-  .gfree { background: var(--c-free-bg); } .gfree .grade { color: #5A5550; font-style: italic; font-weight: 700; font-size: 0.95rem; }
-  .gbreak { background: var(--c-break-bg); } .gbreak .grade { color: var(--c-break); font-weight: 700; } .gbreak .act { background: rgba(196,150,42,0.12); color: var(--c-break); }
-  .gdevo { background: var(--c-devo-bg); } .gdevo .grade { color: var(--c-devo); font-style: italic; }
-  .ghome { background: var(--c-home-bg); } .ghome .grade { color: var(--c-home); font-weight: 700; }
-
-  tr.sp-row td.cc { padding: 10px 16px; }
-  .sp-inner { display: flex; align-items: center; gap: 12px; }
-  .sp-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
-  .sp-note { font-size: 0.7rem; font-style: italic; }
-
-  .duties-wrap { margin-top: 40px; }
-  .duties-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 10px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
-  .duties-table thead th { background: var(--ink); color: rgba(255,255,255,0.85); font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; padding: 12px 16px; text-align: left; letter-spacing: 0.1em; text-transform: uppercase; border-right: 1px solid #2E2B24; }
-  .duties-table thead th:first-child { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: #5A5550; width: 120px; }
-  .duties-table tbody tr { border-bottom: 1px solid var(--rule); }
-  .duties-table tbody tr:last-child { border-bottom: none; }
-  .dt-time { background: var(--bg); padding: 12px 14px; border-right: 2px solid var(--rule); vertical-align: top; }
-  .dt-time .dp { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800; color: var(--ink); }
-  .dt-time .dh { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--muted); margin-top: 2px; }
-  .dt-cell { padding: 10px 14px; border-right: 1px solid var(--rule); vertical-align: top; }
-  .dt-cell:last-child { border-right: none; }
-  .dp-row { font-size: 0.74rem; padding: 4px 0; border-bottom: 1px solid var(--rule); color: var(--ink); display: flex; align-items: baseline; gap: 5px; }
-  .dp-row:last-child { border-bottom: none; }
-  .dp-row .name { font-weight: 600; }
-  .dp-row .loc { font-size: 0.62rem; color: var(--muted); font-style: italic; }
-  .dp-row.is-me { background: #FFF0E8; font-weight: 700; color: var(--c-9r); margin: 2px -6px; padding: 5px 6px; border-radius: 5px; border: none; }
-  .dp-row.is-me .loc { color: #D45F2A99; }
-  .dp-row.is-me::before { content: '★ '; font-size: 0.6rem; }
-
-  .footer { margin-top: 36px; padding: 16px 52px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
-  .footer span { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; }
-
-  @media print {
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    @page { margin: 1cm; size: landscape; }
+  .notch {
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:120px; height:32px; background:#1a1a1a;
+    border-radius:0 0 18px 18px; z-index:20;
+    display:flex; align-items:center; justify-content:center;
   }
+  .notch-pill { width:80px; height:22px; background:#000; border-radius:12px; }
+  .phone-frame.android .notch, .phone-frame.tablet .notch { display:none; }
+
+  .home-bar {
+    position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+    width:100px; height:4px; background:rgba(255,255,255,.15);
+    border-radius:2px; z-index:20;
+  }
+  .phone-frame.android .home-bar { background:rgba(0,0,0,.18); width:80px; bottom:5px; }
+
+  .btn-vol-up,.btn-vol-dn,.btn-power { position:absolute; background:#2a2a2a; border-radius:3px; }
+  .btn-vol-up { left:-4px; top:120px; width:4px; height:30px; }
+  .btn-vol-dn { left:-4px; top:162px; width:4px; height:30px; }
+  .btn-power  { right:-4px; top:140px; width:4px; height:50px; }
+
+  .phone-content {
+    position:absolute; inset:0;
+    overflow-y:auto; overflow-x:hidden;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    display:flex; flex-direction:column;
+  }
+  .phone-content::-webkit-scrollbar { display:none; }
+
+  /* Status bar */
+  .status-bar {
+    background:#1C1A15; height:46px; flex-shrink:0; z-index:10; position:relative;
+    display:flex; align-items:flex-end; justify-content:space-between;
+    padding:0 18px 8px;
+  }
+  .status-time { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:rgba(255,255,255,.8); font-weight:500; }
+  .status-icons { display:flex; gap:5px; align-items:center; font-size:0.6rem; color:rgba(255,255,255,.5); }
+
+  /* Masthead */
+  .s-masthead { background:#1C1A15; padding:14px 16px 12px; flex-shrink:0; }
+  .s-masthead h1 {
+    font-family:'Syne',sans-serif; font-size:1.55rem; font-weight:800;
+    color:#fff; letter-spacing:-0.5px; line-height:1;
+  }
+  .s-masthead h1 em { font-style:normal; color:#D45F2A; }
+  .s-masthead-sub { font-size:0.56rem; color:#7A7570; letter-spacing:.2em; text-transform:uppercase; margin-top:4px; }
+
+  /* Legend */
+  .s-legend {
+    background:#2E2B24; padding:7px 14px;
+    display:flex; flex-wrap:wrap; gap:4px; align-items:center; flex-shrink:0;
+  }
+  .s-leg-lbl { font-size:0.52rem; color:#6A6560; text-transform:uppercase; letter-spacing:.15em; font-weight:500; margin-right:3px; }
+  .s-leg { font-size:0.58rem; font-weight:600; padding:2px 7px 2px 5px; border-radius:20px; display:flex; align-items:center; gap:3px; }
+  .s-leg::before { content:''; width:5px; height:5px; border-radius:50%; display:inline-block; }
+  .l9r{background:#3A2015;color:#F0915A} .l9r::before{background:#D45F2A}
+  .l8r{background:#3A1522;color:#E8859A} .l8r::before{background:#B8415A}
+  .l8b{background:#12282D;color:#6CC0CB} .l8b::before{background:#2E7D8C}
+  .l7b{background:#152914;color:#7DC072} .l7b::before{background:#4A7C3F}
+  .lfr{background:#272522;color:#807B75} .lfr::before{background:#9C9790}
+
+  /* Day tabs — sticky inside the phone */
+  .day-tabs {
+    background:#1C1A15; padding:10px 10px 8px;
+    display:flex; gap:5px; flex-shrink:0;
+    position:sticky; top:0; z-index:15;
+    border-bottom:2px solid #2E2B24;
+  }
+  .day-tab {
+    flex:1; padding:7px 2px 6px;
+    background:#2E2B24; border:none; border-radius:8px;
+    font-family:'Outfit',sans-serif; font-size:0.6rem; font-weight:600;
+    color:#6A6560; letter-spacing:.04em; cursor:pointer;
+    transition:all .2s; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:1px;
+  }
+  .day-tab .day-short { font-size:0.7rem; font-weight:700; }
+  .day-tab .day-accent { width:14px; height:2px; border-radius:2px; margin-top:4px; transition:all .2s; opacity:0; }
+  .day-tab.active .day-accent { opacity:1; }
+
+  .day-tab.act-mon { background:#2A1A10; color:#F0915A; } .day-tab.act-mon .day-accent { background:#D45F2A; }
+  .day-tab.act-tue { background:#2A1020; color:#E8859A; } .day-tab.act-tue .day-accent { background:#B8415A; }
+  .day-tab.act-wed { background:#0E2228; color:#6CC0CB; } .day-tab.act-wed .day-accent { background:#2E7D8C; }
+  .day-tab.act-thu { background:#122214; color:#7DC072; } .day-tab.act-thu .day-accent { background:#4A7C3F; }
+  .day-tab.act-fri { background:#1E1830; color:#B89ECC; } .day-tab.act-fri .day-accent { background:#7B5EA7; }
+
+  /* Day views */
+  .day-view { display:none; flex-direction:column; }
+  .day-view.visible { display:flex; animation:fadeSlide .22s ease; }
+  @keyframes fadeSlide { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  .day-header {
+    padding:10px 16px 8px; background:#F0EEE8;
+    border-bottom:1px solid #DDDAD2;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .day-header-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; color:#1C1A15; }
+  .day-header-count { font-family:'JetBrains Mono',monospace; font-size:0.56rem; color:#8C8880; }
+
+  .period-list { padding:10px 10px 16px; display:flex; flex-direction:column; gap:7px; }
+
+  .period-card {
+    background:#FAFAF7; border-radius:10px; overflow:hidden;
+    box-shadow:0 1px 5px rgba(0,0,0,.07);
+    display:flex; min-height:62px;
+  }
+  .period-card.special { min-height:42px; }
+
+  .card-time {
+    width:54px; flex-shrink:0; background:#F0EEE8; padding:8px 6px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border-right:2px solid #DDDAD2;
+  }
+  .card-per { font-family:'Syne',sans-serif; font-size:0.81rem; font-weight:800; color:#1C1A15; line-height:1; }
+  .card-hrs { font-family:'JetBrains Mono',monospace; font-size:0.94rem; color:#3D3520; margin-top:3px; text-align:center; line-height:1.5; }
+
+  .card-body { flex:1; padding:8px 10px; display:flex; flex-direction:column; justify-content:center; }
+  .card-grade { font-size:0.91rem; font-weight:700; letter-spacing:.02em; line-height:1.1; }
+  .card-subj  { font-size:1.04rem; color:#4A4740; font-weight:500; margin-top:2px; }
+  .card-act   { font-size:0.63rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; margin-top:5px; padding:2px 7px; border-radius:3px; display:inline-block; }
+
+  .g9r .card-body{background:var(--c-9r-bg)} .g9r .card-grade{color:var(--c-9r)} .g9r .card-act{background:rgba(212,95,42,.15);color:#B84A18}
+  .g8r .card-body{background:var(--c-8r-bg)} .g8r .card-grade{color:var(--c-8r)} .g8r .card-act{background:rgba(184,65,90,.15);color:#9A2A44}
+  .g8b .card-body{background:var(--c-8b-bg)} .g8b .card-grade{color:var(--c-8b)} .g8b .card-act{background:rgba(46,125,140,.15);color:#1A6070}
+  .g7b .card-body{background:var(--c-7b-bg)} .g7b .card-grade{color:var(--c-7b)} .g7b .card-act{background:rgba(74,124,63,.15);color:#2E6025}
+  .gfr .card-body{background:var(--c-fr-bg)} .gfr .card-grade{color:#5A5550;font-style:italic}
+  .gbr .card-body{background:var(--c-br-bg)}
+  .gdv .card-body{background:var(--c-dv-bg)}
+  .ghm .card-body{background:var(--c-hm-bg)}
+
+  .period-card.special .card-time { background:transparent; border-right:none; width:50px; }
+  .period-card.special .card-hrs { font-size:0.94rem; color:#4A3E80; }
+  .sp-inner { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+  .sp-tag { font-size:0.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:3px 9px; border-radius:20px; white-space:nowrap; }
+  .sp-note { font-size:0.72rem; font-style:italic; }
+
+  /* Duties */
+  .duties-section { margin:0 10px 8px; background:#FAFAF7; border-radius:10px; overflow:hidden; box-shadow:0 1px 5px rgba(0,0,0,.07); }
+  .duties-header {
+    background:#1C1A15; padding:7px 12px;
+    font-family:'Syne',sans-serif; font-size:0.58rem; font-weight:700;
+    color:rgba(255,255,255,.7); letter-spacing:.15em; text-transform:uppercase;
+    display:flex; align-items:center; gap:7px;
+  }
+  .duties-header::before { content:''; width:8px; height:2px; background:#D45F2A; border-radius:2px; flex-shrink:0; }
+  .duty-row {
+    padding:7px 12px; border-bottom:1px solid #EEECEA;
+    display:flex; align-items:center; gap:6px;
+  }
+  .duty-row:last-child { border-bottom:none; }
+  .duty-time { font-family:'JetBrains Mono',monospace; font-size:0.52rem; color:#8C8880; width:64px; flex-shrink:0; }
+  .duty-name { font-size:0.7rem; font-weight:600; color:#1C1A15; }
+  .duty-loc  { font-size:0.6rem; color:#8C8880; font-style:italic; margin-left:3px; }
+  .duty-row.isme { background:#FFF8F4; }
+  .duty-row.isme .duty-name { color:#D45F2A; }
+  .duty-row.isme .duty-loc  { color:#D45F2A88; }
+  .duty-row.isme::before { content:'★ '; font-size:0.5rem; color:#D45F2A; }
+
+  .s-footer { padding:8px 16px 24px; border-top:1px solid #DDDAD2; margin:0 10px; }
+  .s-footer span { display:block; font-family:'JetBrains Mono',monospace; font-size:0.5rem; color:#8C8880; letter-spacing:.1em; margin-bottom:3px; }
+
+  .label-note { color:#444; font-size:0.63rem; letter-spacing:.1em; text-align:center; }
 </style>
 </head>
 <body>
 
-<div class="masthead">
-  <div>
-    <h1>Mr. <em>Edoardo</em></h1>
-    <p class="masthead-sub">Class Schedule &nbsp;·&nbsp; Academic Year 2026</p>
-  </div>
-  <div class="masthead-right">
-    <span class="badge">Language Arts &amp; Science &nbsp;·&nbsp; Grades 7–9</span>
-    <span class="star-note">★ = Edoardo's duties highlighted</span>
-  </div>
+<p class="page-title">Preview Móvil — Mr. Edoardo Schedule 2026</p>
+
+<div class="device-selector">
+  <button class="dev-btn active" onclick="setDevice('iphone',this)">📱 iPhone</button>
+  <button class="dev-btn" onclick="setDevice('android',this)">🤖 Android</button>
+  <button class="dev-btn" onclick="setDevice('tablet',this)">📲 iPad / Tablet</button>
 </div>
 
-<div class="legend-strip">
-  <span class="legend-label">Grades:</span>
-  <span class="leg l-9r">9th Red</span>
-  <span class="leg l-8r">8th Red</span>
-  <span class="leg l-8b">8th Blue</span>
-  <span class="leg l-7b">7th Blue</span>
-  <span class="leg l-free">Admin / Free</span>
-</div>
+<div class="phone-wrap">
+  <div class="phone-frame" id="frame">
+    <div class="btn-vol-up"></div><div class="btn-vol-dn"></div><div class="btn-power"></div>
+    <div class="phone-screen">
+      <div class="notch"><div class="notch-pill"></div></div>
+      <div class="home-bar"></div>
+      <div class="phone-content" id="phoneContent">
 
-<div class="wrapper">
-  <div class="sec-title">Weekly Schedule &nbsp; Monday – Friday</div>
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div class="status-icons"><span>▲▲▲</span><span>WiFi</span><span>🔋</span></div>
+        </div>
 
-  <table class="sched">
-    <thead>
-      <tr>
-        <th class="t-col">Period / Time</th>
-        <th class="d-mon">Monday<div class="day-accent"></div></th>
-        <th class="d-tue">Tuesday<div class="day-accent"></div></th>
-        <th class="d-wed">Wednesday<div class="day-accent"></div></th>
-        <th class="d-thu">Thursday<div class="day-accent"></div></th>
-        <th class="d-fri">Friday<div class="day-accent"></div></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="tc"><div class="per">1st</div><div class="hrs">6:45–7:40</div></td>
-        <td class="cc g9r me"><div class="grade">9th Red</div><div class="subj">Language Arts</div><div class="act">Vocabulary</div></td>
-        <td class="cc g9r me"><div class="grade">9th Red</div><div class="subj">Language Arts</div><div class="act">Reading Plan</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Language Arts</div><div class="act">Quiz</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-      </tr>
-      <tr class="sp-row">
-        <td class="tc"><div class="per" style="font-size:0.75rem;color:var(--muted)">—</div><div class="hrs">7:40–8:00</div></td>
-        <td class="cc gdevo" colspan="5">
-          <div class="sp-inner">
-            <span class="sp-tag" style="background:var(--c-devo-bg);color:var(--c-devo);">✦ Devotional</span>
-            <span class="sp-note" style="color:var(--c-devo);">Daily school devotional — all staff present</span>
+        <div class="s-masthead">
+          <h1>Mr. <em>Edoardo</em></h1>
+          <p class="s-masthead-sub">Class Schedule · Academic Year 2026</p>
+        </div>
+
+        <div class="s-legend">
+          <span class="s-leg-lbl">Grades:</span>
+          <span class="s-leg l9r">9th Red</span>
+          <span class="s-leg l8r">8th Red</span>
+          <span class="s-leg l8b">8th Blue</span>
+          <span class="s-leg l7b">7th Blue</span>
+          <span class="s-leg lfr">Admin</span>
+        </div>
+
+        <!-- ── DAY TABS ── -->
+        <div class="day-tabs" id="dayTabs">
+          <button class="day-tab active act-mon" data-day="mon">
+            <span class="day-short">Mon</span><div class="day-accent"></div>
+          </button>
+          <button class="day-tab" data-day="tue">
+            <span class="day-short">Tue</span><div class="day-accent"></div>
+          </button>
+          <button class="day-tab" data-day="wed">
+            <span class="day-short">Wed</span><div class="day-accent"></div>
+          </button>
+          <button class="day-tab" data-day="thu">
+            <span class="day-short">Thu</span><div class="day-accent"></div>
+          </button>
+          <button class="day-tab" data-day="fri">
+            <span class="day-short">Fri</span><div class="day-accent"></div>
+          </button>
+        </div>
+
+        <!-- ══════════ MONDAY ══════════ -->
+        <div class="day-view visible" id="day-mon">
+          <div class="day-header"><span class="day-header-name">Monday</span><span class="day-header-count">10 blocks</span></div>
+          <div class="period-list">
+            <div class="period-card g9r">
+              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card special gdv">
+              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+            </div>
+            <div class="period-card special gbr">
+              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Mon: Store duty ★</span></div></div>
+            </div>
+            <div class="period-card g7b">
+              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+              <div class="card-body"><div class="card-grade">7th Blue</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+            </div>
+            <div class="period-card special ghm">
+              <div class="card-time"><div class="card-hrs">1:15<br>1:20</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-hm-bg);color:var(--c-hm)">🏠 Homeroom</span><span class="sp-note" style="color:var(--c-hm)">Monday — all teachers</span></div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
+            </div>
           </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="tc"><div class="per">2nd</div><div class="hrs">8:00–8:55</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Science</div><div class="act">Vocabulary</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Science</div><div class="act">Vocabulary</div></td>
-        <td class="cc gfree"><div class="grade">Admin Hours</div></td>
-        <td class="cc g9r me"><div class="grade">9th Red</div><div class="subj">Language Arts</div><div class="act">Quiz</div></td>
-        <td class="cc gfree"><div class="grade">Admin Hours</div></td>
-      </tr>
-      <tr>
-        <td class="tc"><div class="per">3rd</div><div class="hrs">8:55–9:50</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Science</div><div class="act">Speaking Project</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Science</div><div class="act">Speaking Project</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Language Arts</div><div class="act">Vocabulary</div></td>
-        <td class="cc g9r me"><div class="grade">9th Red</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-      </tr>
-      <tr>
-        <td class="tc"><div class="per">4th</div><div class="hrs">9:50–10:45</div></td>
-        <td class="cc gfree"><div class="grade">Admin Hours</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Language Arts</div><div class="act">Vocabulary</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Language Arts</div><div class="act">Quiz</div></td>
-        <td class="cc gfree"><div class="grade">Admin Hours</div></td>
-      </tr>
-      <tr class="sp-row">
-        <td class="tc"><div class="per" style="font-size:0.75rem;color:var(--muted)">—</div><div class="hrs">10:45–11:15</div></td>
-        <td class="cc gbreak" colspan="5">
-          <div class="sp-inner">
-            <span class="sp-tag" style="background:var(--c-break-bg);color:var(--c-break);">☕ Middle School Break</span>
-            <span class="sp-note" style="color:var(--c-break);">Mon: Duties — Store &nbsp;·&nbsp; All days: supervision</span>
+          <div class="duties-section">
+            <div class="duties-header">Supervision — Monday</div>
+            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+            <div class="duty-row"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Yair</span><span class="duty-loc">Front Door</span></div>
+            <div class="duty-row"><span class="duty-time">Entry 6:30</span><span class="duty-name">Ms. Sisy</span><span class="duty-loc">Hallway</span></div>
+            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+            <div class="duty-row"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Jorge</span><span class="duty-loc">Court</span></div>
+            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
           </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="tc"><div class="per">5th</div><div class="hrs">11:15–12:15</div></td>
-        <td class="cc g7b me"><div class="grade">7th Blue</div><div class="subj">Science</div><div class="act">Vocabulary</div></td>
-        <td class="cc g7b me"><div class="grade">7th Blue</div><div class="subj">Science</div><div class="act">Speaking Project</div></td>
-        <td class="cc g9r me"><div class="grade">9th Red</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-        <td class="cc g8r me"><div class="grade">8th Red</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-      </tr>
-      <tr>
-        <td class="tc"><div class="per">6th</div><div class="hrs">12:15–1:15</div></td>
-        <td class="cc gfree"><div class="grade">Admin Hours</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Language Arts</div><div class="act">Vocabulary</div></td>
-        <td class="cc gfree"><div class="grade">Admin Hours</div></td>
-        <td class="cc g8b me"><div class="grade">8th Blue</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-        <td class="cc g9r me"><div class="grade">9th Red</div><div class="subj">Language Arts</div><div class="act">Cambridge Book</div></td>
-      </tr>
-      <tr class="sp-row">
-        <td class="tc"><div class="per" style="font-size:0.75rem;color:var(--muted)">—</div><div class="hrs">1:15–1:20</div></td>
-        <td class="cc ghome" colspan="5">
-          <div class="sp-inner">
-            <span class="sp-tag" style="background:var(--c-home-bg);color:var(--c-home);">🏠 Homeroom Class</span>
-            <span class="sp-note" style="color:var(--c-home);">Monday · all teachers present</span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="tc"><div class="per">7th</div><div class="hrs">1:30–2:15</div></td>
-        <td class="cc gfree" colspan="5">
-          <div class="grade">Administrative Hours &nbsp;<span style="font-weight:400;font-style:italic;font-size:0.68rem;color:var(--muted);">All week — planning, grading &amp; coordination</span></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <div class="s-footer"><span>Mr. Edoardo · Academic Year 2026</span><span>★ = Edoardo's duties</span></div>
+        </div>
 
-  <div class="duties-wrap">
-    <div class="sec-title">Supervision Duties &nbsp; Daily — All Week</div>
-    <table class="duties-table">
-      <thead>
-        <tr>
-          <th>Duty Block</th>
-          <th>Entry &nbsp;·&nbsp; 6:30–6:45</th>
-          <th>Break &nbsp;·&nbsp; 10:45–11:15</th>
-          <th>Dismissal &nbsp;·&nbsp; End of Day</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="dt-time"><div class="dp">Staff</div><div class="dh">Same every day</div></td>
-          <td class="dt-cell">
-            <div class="dp-row"><span class="name">Mr. Yair</span><span class="loc">Front Door</span></div>
-            <div class="dp-row"><span class="name">Ms. Sisy</span><span class="loc">Hallway</span></div>
-            <div class="dp-row"><span class="name">Mrs. Adriana</span><span class="loc">Terrace</span></div>
-            <div class="dp-row is-me"><span class="name">Mr. Edoardo</span><span class="loc">Traffic Control</span></div>
-          </td>
-          <td class="dt-cell">
-            <div class="dp-row"><span class="name">Mrs. Laurin</span><span class="loc">Kiosk</span></div>
-            <div class="dp-row"><span class="name">Coordination</span><span class="loc">Reception / Hallway</span></div>
-            <div class="dp-row"><span class="name">Mr. Jorge</span><span class="loc">Court</span></div>
-            <div class="dp-row is-me"><span class="name">Mr. Edoardo</span><span class="loc">Store</span></div>
-            <div class="dp-row"><span class="name">Pr. Yova</span><span class="loc">2nd Floor</span></div>
-          </td>
-          <td class="dt-cell">
-            <div class="dp-row"><span class="name">Mrs. Laurin</span><span class="loc">Kiosk</span></div>
-            <div class="dp-row"><span class="name">Coordination</span><span class="loc">Reception / Hallway</span></div>
-            <div class="dp-row"><span class="name">Mr. Jorge</span><span class="loc">Court</span></div>
-            <div class="dp-row is-me"><span class="name">Mr. Edoardo</span><span class="loc">Store</span></div>
-            <div class="dp-row"><span class="name">Pr. Yova</span><span class="loc">2nd Floor</span></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <!-- ══════════ TUESDAY ══════════ -->
+        <div class="day-view" id="day-tue">
+          <div class="day-header"><span class="day-header-name">Tuesday</span><span class="day-header-count">9 blocks</span></div>
+          <div class="period-list">
+            <div class="period-card g9r">
+              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Reading Plan</div></div>
+            </div>
+            <div class="period-card special gdv">
+              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+            </div>
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card special gbr">
+              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+            </div>
+            <div class="period-card g7b">
+              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+              <div class="card-body"><div class="card-grade">7th Blue</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
+            </div>
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
+            </div>
+          </div>
+          <div class="duties-section">
+            <div class="duties-header">Supervision — Tuesday</div>
+            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+          </div>
+          <div class="s-footer"><span>★ = Edoardo's duties</span></div>
+        </div>
+
+        <!-- ══════════ WEDNESDAY ══════════ -->
+        <div class="day-view" id="day-wed">
+          <div class="day-header"><span class="day-header-name">Wednesday</span><span class="day-header-count">9 blocks</span></div>
+          <div class="period-list">
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card special gdv">
+              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+            </div>
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card special gbr">
+              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+            </div>
+            <div class="period-card g9r">
+              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
+            </div>
+          </div>
+          <div class="duties-section">
+            <div class="duties-header">Supervision — Wednesday</div>
+            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+          </div>
+          <div class="s-footer"><span>★ = Edoardo's duties</span></div>
+        </div>
+
+        <!-- ══════════ THURSDAY ══════════ -->
+        <div class="day-view" id="day-thu">
+          <div class="day-header"><span class="day-header-name">Thursday</span><span class="day-header-count">9 blocks</span></div>
+          <div class="period-list">
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
+            </div>
+            <div class="period-card special gdv">
+              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+            </div>
+            <div class="period-card g9r">
+              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
+            </div>
+            <div class="period-card g9r">
+              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
+            </div>
+            <div class="period-card special gbr">
+              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
+            </div>
+          </div>
+          <div class="duties-section">
+            <div class="duties-header">Supervision — Thursday</div>
+            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+          </div>
+          <div class="s-footer"><span>★ = Edoardo's duties</span></div>
+        </div>
+
+        <!-- ══════════ FRIDAY ══════════ -->
+        <div class="day-view" id="day-fri">
+          <div class="day-header"><span class="day-header-name">Friday</span><span class="day-header-count">9 blocks</span></div>
+          <div class="period-list">
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card special gdv">
+              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+            </div>
+            <div class="period-card g8b">
+              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+            </div>
+            <div class="period-card special gbr">
+              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+            </div>
+            <div class="period-card g8r">
+              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card g9r">
+              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+            </div>
+            <div class="period-card gfr">
+              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
+            </div>
+          </div>
+          <div class="duties-section">
+            <div class="duties-header">Supervision — Friday</div>
+            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+          </div>
+          <div class="s-footer"><span>Mr. Edoardo · Academic Year 2026</span><span>★ = Edoardo's duties</span></div>
+        </div>
+
+      </div><!-- /phone-content -->
+    </div>
   </div>
 </div>
 
-<div class="footer">
-  <span>Mr. Edoardo &nbsp;·&nbsp; Academic Year 2026</span>
-  <span>Language Arts &amp; Science &nbsp;·&nbsp; Grades 7th – 9th</span>
-  <span>★ = Edoardo's specific duties</span>
-</div>
+<p class="label-note">Toca los días dentro del celular · También scrolleable ↕</p>
 
+<script>
+  const dayColors = { mon:'act-mon', tue:'act-tue', wed:'act-wed', thu:'act-thu', fri:'act-fri' };
+
+  document.getElementById('dayTabs').addEventListener('click', function(e) {
+    const btn = e.target.closest('.day-tab');
+    if (!btn) return;
+    const day = btn.dataset.day;
+
+    // Update tabs
+    document.querySelectorAll('.day-tab').forEach(t => {
+      t.className = 'day-tab';
+    });
+    btn.classList.add('active', dayColors[day]);
+
+    // Show correct day
+    document.querySelectorAll('.day-view').forEach(v => v.classList.remove('visible'));
+    document.getElementById('day-' + day).classList.add('visible');
+
+    // Scroll to just below the sticky tabs
+    document.getElementById('phoneContent').scrollTo({ top: 200, behavior: 'smooth' });
+  });
+
+  function setDevice(type, btn) {
+    const frame = document.getElementById('frame');
+    document.querySelectorAll('.dev-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    frame.className = 'phone-frame';
+    if (type === 'tablet')  frame.classList.add('tablet');
+    if (type === 'android') frame.classList.add('android');
+  }
+</script>
 </body>
 </html>
 
