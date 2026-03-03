@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preview Móvil — Mr. Edoardo Schedule</title>
+<title>Mr. Edoardo — Schedule 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -20,123 +20,51 @@
 
   body {
     font-family:'Outfit',sans-serif;
-    background:#0d0d0d;
+    background:#F0EEE8;
     min-height:100vh;
-    display:flex; flex-direction:column; align-items:center;
-    padding:36px 20px 60px; gap:24px;
-  }
-
-  .page-title {
-    color:#fff; font-size:0.7rem; letter-spacing:0.25em;
-    text-transform:uppercase; opacity:0.35; font-weight:500;
-  }
-
-  .device-selector { display:flex; gap:8px; }
-  .dev-btn {
-    background:#1a1a1a; border:1px solid #2e2e2e; color:#666;
-    font-family:'Outfit',sans-serif; font-size:0.68rem;
-    letter-spacing:0.1em; text-transform:uppercase;
-    padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .2s;
-  }
-  .dev-btn.active, .dev-btn:hover { background:#D45F2A; border-color:#D45F2A; color:#fff; }
-
-  .phone-wrap { position:relative; }
-  .phone-frame {
-    width:375px; height:760px;
-    background:#1a1a1a; border-radius:50px; padding:14px;
-    box-shadow: 0 0 0 1px #333, 0 0 0 3px #222,
-                0 40px 80px rgba(0,0,0,.85),
-                inset 0 0 0 1px #3a3a3a;
-    transition:all .4s cubic-bezier(.4,0,.2,1);
-  }
-  .phone-frame.tablet  { width:520px; height:740px; border-radius:28px; padding:16px; }
-  .phone-frame.android { border-radius:28px; }
-
-  .phone-screen {
-    width:100%; height:100%; background:#F0EEE8;
-    border-radius:38px; overflow:hidden; position:relative;
-  }
-  .phone-frame.tablet  .phone-screen,
-  .phone-frame.android .phone-screen { border-radius:14px; }
-
-  .notch {
-    position:absolute; top:0; left:50%; transform:translateX(-50%);
-    width:120px; height:32px; background:#1a1a1a;
-    border-radius:0 0 18px 18px; z-index:20;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .notch-pill { width:80px; height:22px; background:#000; border-radius:12px; }
-  .phone-frame.android .notch, .phone-frame.tablet .notch { display:none; }
-
-  .home-bar {
-    position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
-    width:100px; height:4px; background:rgba(255,255,255,.15);
-    border-radius:2px; z-index:20;
-  }
-  .phone-frame.android .home-bar { background:rgba(0,0,0,.18); width:80px; bottom:5px; }
-
-  .btn-vol-up,.btn-vol-dn,.btn-power { position:absolute; background:#2a2a2a; border-radius:3px; }
-  .btn-vol-up { left:-4px; top:120px; width:4px; height:30px; }
-  .btn-vol-dn { left:-4px; top:162px; width:4px; height:30px; }
-  .btn-power  { right:-4px; top:140px; width:4px; height:50px; }
-
-  .phone-content {
-    position:absolute; inset:0;
-    overflow-y:auto; overflow-x:hidden;
-    -webkit-overflow-scrolling:touch; scrollbar-width:none;
     display:flex; flex-direction:column;
   }
-  .phone-content::-webkit-scrollbar { display:none; }
-
-  /* Status bar */
-  .status-bar {
-    background:#1C1A15; height:46px; flex-shrink:0; z-index:10; position:relative;
-    display:flex; align-items:flex-end; justify-content:space-between;
-    padding:0 18px 8px;
-  }
-  .status-time { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:rgba(255,255,255,.8); font-weight:500; }
-  .status-icons { display:flex; gap:5px; align-items:center; font-size:0.6rem; color:rgba(255,255,255,.5); }
 
   /* Masthead */
-  .s-masthead { background:#1C1A15; padding:14px 16px 12px; flex-shrink:0; }
+  .s-masthead { background:#1C1A15; padding:18px 20px 14px; }
   .s-masthead h1 {
-    font-family:'Syne',sans-serif; font-size:1.55rem; font-weight:800;
+    font-family:'Syne',sans-serif; font-size:clamp(1.6rem,5vw,2.2rem); font-weight:800;
     color:#fff; letter-spacing:-0.5px; line-height:1;
   }
   .s-masthead h1 em { font-style:normal; color:#D45F2A; }
-  .s-masthead-sub { font-size:0.56rem; color:#7A7570; letter-spacing:.2em; text-transform:uppercase; margin-top:4px; }
+  .s-masthead-sub { font-size:clamp(0.6rem,2vw,0.72rem); color:#7A7570; letter-spacing:.2em; text-transform:uppercase; margin-top:5px; }
 
   /* Legend */
   .s-legend {
-    background:#2E2B24; padding:7px 14px;
-    display:flex; flex-wrap:wrap; gap:4px; align-items:center; flex-shrink:0;
+    background:#2E2B24; padding:8px 20px;
+    display:flex; flex-wrap:wrap; gap:5px; align-items:center;
   }
-  .s-leg-lbl { font-size:0.52rem; color:#6A6560; text-transform:uppercase; letter-spacing:.15em; font-weight:500; margin-right:3px; }
-  .s-leg { font-size:0.58rem; font-weight:600; padding:2px 7px 2px 5px; border-radius:20px; display:flex; align-items:center; gap:3px; }
-  .s-leg::before { content:''; width:5px; height:5px; border-radius:50%; display:inline-block; }
+  .s-leg-lbl { font-size:0.58rem; color:#6A6560; text-transform:uppercase; letter-spacing:.15em; font-weight:500; margin-right:4px; }
+  .s-leg { font-size:0.62rem; font-weight:600; padding:3px 8px 3px 6px; border-radius:20px; display:flex; align-items:center; gap:4px; }
+  .s-leg::before { content:''; width:6px; height:6px; border-radius:50%; display:inline-block; }
   .l9r{background:#3A2015;color:#F0915A} .l9r::before{background:#D45F2A}
   .l8r{background:#3A1522;color:#E8859A} .l8r::before{background:#B8415A}
   .l8b{background:#12282D;color:#6CC0CB} .l8b::before{background:#2E7D8C}
   .l7b{background:#152914;color:#7DC072} .l7b::before{background:#4A7C3F}
   .lfr{background:#272522;color:#807B75} .lfr::before{background:#9C9790}
 
-  /* Day tabs — sticky inside the phone */
+  /* Day tabs */
   .day-tabs {
-    background:#1C1A15; padding:10px 10px 8px;
-    display:flex; gap:5px; flex-shrink:0;
-    position:sticky; top:0; z-index:15;
+    background:#1C1A15; padding:12px 16px 10px;
+    display:flex; gap:8px;
+    position:sticky; top:0; z-index:50;
     border-bottom:2px solid #2E2B24;
   }
   .day-tab {
-    flex:1; padding:7px 2px 6px;
-    background:#2E2B24; border:none; border-radius:8px;
-    font-family:'Outfit',sans-serif; font-size:0.6rem; font-weight:600;
+    flex:1; padding:10px 4px 8px;
+    background:#2E2B24; border:none; border-radius:10px;
+    font-family:'Outfit',sans-serif; font-size:clamp(0.65rem,2.5vw,0.8rem); font-weight:600;
     color:#6A6560; letter-spacing:.04em; cursor:pointer;
     transition:all .2s; text-align:center;
-    display:flex; flex-direction:column; align-items:center; gap:1px;
+    display:flex; flex-direction:column; align-items:center; gap:2px;
   }
-  .day-tab .day-short { font-size:0.7rem; font-weight:700; }
-  .day-tab .day-accent { width:14px; height:2px; border-radius:2px; margin-top:4px; transition:all .2s; opacity:0; }
+  .day-tab .day-short { font-size:clamp(0.75rem,2.8vw,0.9rem); font-weight:700; }
+  .day-tab .day-accent { width:18px; height:2px; border-radius:2px; margin-top:4px; transition:all .2s; opacity:0; }
   .day-tab.active .day-accent { opacity:1; }
 
   .day-tab.act-mon { background:#2A1A10; color:#F0915A; } .day-tab.act-mon .day-accent { background:#D45F2A; }
@@ -146,39 +74,39 @@
   .day-tab.act-fri { background:#1E1830; color:#B89ECC; } .day-tab.act-fri .day-accent { background:#7B5EA7; }
 
   /* Day views */
-  .day-view { display:none; flex-direction:column; }
+  .day-view { display:none; flex-direction:column; flex:1; }
   .day-view.visible { display:flex; animation:fadeSlide .22s ease; }
   @keyframes fadeSlide { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
   .day-header {
-    padding:10px 16px 8px; background:#F0EEE8;
+    padding:12px 20px 10px; background:#F0EEE8;
     border-bottom:1px solid #DDDAD2;
     display:flex; align-items:center; justify-content:space-between;
   }
-  .day-header-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; color:#1C1A15; }
-  .day-header-count { font-family:'JetBrains Mono',monospace; font-size:0.56rem; color:#8C8880; }
+  .day-header-name { font-family:'Syne',sans-serif; font-size:clamp(1.1rem,4vw,1.4rem); font-weight:800; color:#1C1A15; }
+  .day-header-count { font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:#8C8880; }
 
-  .period-list { padding:10px 10px 16px; display:flex; flex-direction:column; gap:7px; }
+  .period-list { padding:12px 14px 20px; display:flex; flex-direction:column; gap:9px; }
 
   .period-card {
-    background:#FAFAF7; border-radius:10px; overflow:hidden;
-    box-shadow:0 1px 5px rgba(0,0,0,.07);
-    display:flex; min-height:62px;
+    background:#FAFAF7; border-radius:12px; overflow:hidden;
+    box-shadow:0 1px 6px rgba(0,0,0,.08);
+    display:flex; min-height:72px;
   }
-  .period-card.special { min-height:42px; }
+  .period-card.special { min-height:50px; }
 
   .card-time {
-    width:54px; flex-shrink:0; background:#F0EEE8; padding:8px 6px;
+    width:clamp(60px,16vw,72px); flex-shrink:0; background:#F0EEE8; padding:10px 8px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     border-right:2px solid #DDDAD2;
   }
   .card-per { font-family:'Syne',sans-serif; font-size:0.81rem; font-weight:800; color:#1C1A15; line-height:1; }
-  .card-hrs { font-family:'JetBrains Mono',monospace; font-size:0.94rem; color:#3D3520; margin-top:3px; text-align:center; line-height:1.5; }
+  .card-hrs { font-family:'JetBrains Mono',monospace; font-size:0.94rem; color:#3D3520; margin-top:4px; text-align:center; line-height:1.5; }
 
-  .card-body { flex:1; padding:8px 10px; display:flex; flex-direction:column; justify-content:center; }
+  .card-body { flex:1; padding:10px 14px; display:flex; flex-direction:column; justify-content:center; }
   .card-grade { font-size:0.91rem; font-weight:700; letter-spacing:.02em; line-height:1.1; }
-  .card-subj  { font-size:1.04rem; color:#4A4740; font-weight:500; margin-top:2px; }
-  .card-act   { font-size:0.63rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; margin-top:5px; padding:2px 7px; border-radius:3px; display:inline-block; }
+  .card-subj  { font-size:1.04rem; color:#4A4740; font-weight:500; margin-top:3px; }
+  .card-act   { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; margin-top:6px; padding:3px 9px; border-radius:4px; display:inline-block; }
 
   .g9r .card-body{background:var(--c-9r-bg)} .g9r .card-grade{color:var(--c-9r)} .g9r .card-act{background:rgba(212,95,42,.15);color:#B84A18}
   .g8r .card-body{background:var(--c-8r-bg)} .g8r .card-grade{color:var(--c-8r)} .g8r .card-act{background:rgba(184,65,90,.15);color:#9A2A44}
@@ -189,359 +117,331 @@
   .gdv .card-body{background:var(--c-dv-bg)}
   .ghm .card-body{background:var(--c-hm-bg)}
 
-  .period-card.special .card-time { background:transparent; border-right:none; width:50px; }
+  .period-card.special .card-time { background:transparent; border-right:none; width:clamp(52px,14vw,64px); }
   .period-card.special .card-hrs { font-size:0.94rem; color:#4A3E80; }
-  .sp-inner { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
-  .sp-tag { font-size:0.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:3px 9px; border-radius:20px; white-space:nowrap; }
+  .sp-inner { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .sp-tag { font-size:0.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:4px 11px; border-radius:20px; white-space:nowrap; }
   .sp-note { font-size:0.72rem; font-style:italic; }
 
   /* Duties */
-  .duties-section { margin:0 10px 8px; background:#FAFAF7; border-radius:10px; overflow:hidden; box-shadow:0 1px 5px rgba(0,0,0,.07); }
+  .duties-section { margin:0 14px 10px; background:#FAFAF7; border-radius:12px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,.08); }
   .duties-header {
-    background:#1C1A15; padding:7px 12px;
-    font-family:'Syne',sans-serif; font-size:0.58rem; font-weight:700;
+    background:#1C1A15; padding:9px 14px;
+    font-family:'Syne',sans-serif; font-size:0.62rem; font-weight:700;
     color:rgba(255,255,255,.7); letter-spacing:.15em; text-transform:uppercase;
-    display:flex; align-items:center; gap:7px;
+    display:flex; align-items:center; gap:8px;
   }
-  .duties-header::before { content:''; width:8px; height:2px; background:#D45F2A; border-radius:2px; flex-shrink:0; }
+  .duties-header::before { content:''; width:10px; height:2px; background:#D45F2A; border-radius:2px; flex-shrink:0; }
   .duty-row {
-    padding:7px 12px; border-bottom:1px solid #EEECEA;
-    display:flex; align-items:center; gap:6px;
+    padding:9px 14px; border-bottom:1px solid #EEECEA;
+    display:flex; align-items:center; gap:8px;
   }
   .duty-row:last-child { border-bottom:none; }
-  .duty-time { font-family:'JetBrains Mono',monospace; font-size:0.52rem; color:#8C8880; width:64px; flex-shrink:0; }
-  .duty-name { font-size:0.7rem; font-weight:600; color:#1C1A15; }
-  .duty-loc  { font-size:0.6rem; color:#8C8880; font-style:italic; margin-left:3px; }
+  .duty-time { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:#8C8880; width:72px; flex-shrink:0; }
+  .duty-name { font-size:0.78rem; font-weight:600; color:#1C1A15; }
+  .duty-loc  { font-size:0.66rem; color:#8C8880; font-style:italic; margin-left:4px; }
   .duty-row.isme { background:#FFF8F4; }
   .duty-row.isme .duty-name { color:#D45F2A; }
   .duty-row.isme .duty-loc  { color:#D45F2A88; }
-  .duty-row.isme::before { content:'★ '; font-size:0.5rem; color:#D45F2A; }
+  .duty-row.isme::before { content:'★ '; font-size:0.55rem; color:#D45F2A; }
 
-  .s-footer { padding:8px 16px 24px; border-top:1px solid #DDDAD2; margin:0 10px; }
-  .s-footer span { display:block; font-family:'JetBrains Mono',monospace; font-size:0.5rem; color:#8C8880; letter-spacing:.1em; margin-bottom:3px; }
-
-  .label-note { color:#444; font-size:0.63rem; letter-spacing:.1em; text-align:center; }
+  .s-footer { padding:10px 20px 28px; border-top:1px solid #DDDAD2; margin:0 14px; }
+  .s-footer span { display:block; font-family:'JetBrains Mono',monospace; font-size:0.56rem; color:#8C8880; letter-spacing:.1em; margin-bottom:4px; }
 </style>
 </head>
 <body>
 
-<p class="page-title">Preview Móvil — Mr. Edoardo Schedule 2026</p>
-
-<div class="device-selector">
-  <button class="dev-btn active" onclick="setDevice('iphone',this)">📱 iPhone</button>
-  <button class="dev-btn" onclick="setDevice('android',this)">🤖 Android</button>
-  <button class="dev-btn" onclick="setDevice('tablet',this)">📲 iPad / Tablet</button>
-</div>
-
-<div class="phone-wrap">
-  <div class="phone-frame" id="frame">
-    <div class="btn-vol-up"></div><div class="btn-vol-dn"></div><div class="btn-power"></div>
-    <div class="phone-screen">
-      <div class="notch"><div class="notch-pill"></div></div>
-      <div class="home-bar"></div>
-      <div class="phone-content" id="phoneContent">
-
-        <div class="status-bar">
-          <span class="status-time">9:41</span>
-          <div class="status-icons"><span>▲▲▲</span><span>WiFi</span><span>🔋</span></div>
-        </div>
-
-        <div class="s-masthead">
-          <h1>Mr. <em>Edoardo</em></h1>
-          <p class="s-masthead-sub">Class Schedule · Academic Year 2026</p>
-        </div>
-
-        <div class="s-legend">
-          <span class="s-leg-lbl">Grades:</span>
-          <span class="s-leg l9r">9th Red</span>
-          <span class="s-leg l8r">8th Red</span>
-          <span class="s-leg l8b">8th Blue</span>
-          <span class="s-leg l7b">7th Blue</span>
-          <span class="s-leg lfr">Admin</span>
-        </div>
-
-        <!-- ── DAY TABS ── -->
-        <div class="day-tabs" id="dayTabs">
-          <button class="day-tab active act-mon" data-day="mon">
-            <span class="day-short">Mon</span><div class="day-accent"></div>
-          </button>
-          <button class="day-tab" data-day="tue">
-            <span class="day-short">Tue</span><div class="day-accent"></div>
-          </button>
-          <button class="day-tab" data-day="wed">
-            <span class="day-short">Wed</span><div class="day-accent"></div>
-          </button>
-          <button class="day-tab" data-day="thu">
-            <span class="day-short">Thu</span><div class="day-accent"></div>
-          </button>
-          <button class="day-tab" data-day="fri">
-            <span class="day-short">Fri</span><div class="day-accent"></div>
-          </button>
-        </div>
-
-        <!-- ══════════ MONDAY ══════════ -->
-        <div class="day-view visible" id="day-mon">
-          <div class="day-header"><span class="day-header-name">Monday</span><span class="day-header-count">10 blocks</span></div>
-          <div class="period-list">
-            <div class="period-card g9r">
-              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
-              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card special gdv">
-              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
-            </div>
-            <div class="period-card special gbr">
-              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Mon: Store duty ★</span></div></div>
-            </div>
-            <div class="period-card g7b">
-              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
-              <div class="card-body"><div class="card-grade">7th Blue</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
-            </div>
-            <div class="period-card special ghm">
-              <div class="card-time"><div class="card-hrs">1:15<br>1:20</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-hm-bg);color:var(--c-hm)">🏠 Homeroom</span><span class="sp-note" style="color:var(--c-hm)">Monday — all teachers</span></div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
-            </div>
-          </div>
-          <div class="duties-section">
-            <div class="duties-header">Supervision — Monday</div>
-            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
-            <div class="duty-row"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Yair</span><span class="duty-loc">Front Door</span></div>
-            <div class="duty-row"><span class="duty-time">Entry 6:30</span><span class="duty-name">Ms. Sisy</span><span class="duty-loc">Hallway</span></div>
-            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-            <div class="duty-row"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Jorge</span><span class="duty-loc">Court</span></div>
-            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-          </div>
-          <div class="s-footer"><span>Mr. Edoardo · Academic Year 2026</span><span>★ = Edoardo's duties</span></div>
-        </div>
-
-        <!-- ══════════ TUESDAY ══════════ -->
-        <div class="day-view" id="day-tue">
-          <div class="day-header"><span class="day-header-name">Tuesday</span><span class="day-header-count">9 blocks</span></div>
-          <div class="period-list">
-            <div class="period-card g9r">
-              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
-              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Reading Plan</div></div>
-            </div>
-            <div class="period-card special gdv">
-              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
-            </div>
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card special gbr">
-              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
-            </div>
-            <div class="period-card g7b">
-              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
-              <div class="card-body"><div class="card-grade">7th Blue</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
-            </div>
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
-            </div>
-          </div>
-          <div class="duties-section">
-            <div class="duties-header">Supervision — Tuesday</div>
-            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
-            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-          </div>
-          <div class="s-footer"><span>★ = Edoardo's duties</span></div>
-        </div>
-
-        <!-- ══════════ WEDNESDAY ══════════ -->
-        <div class="day-view" id="day-wed">
-          <div class="day-header"><span class="day-header-name">Wednesday</span><span class="day-header-count">9 blocks</span></div>
-          <div class="period-list">
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card special gdv">
-              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
-            </div>
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card special gbr">
-              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
-            </div>
-            <div class="period-card g9r">
-              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
-              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
-            </div>
-          </div>
-          <div class="duties-section">
-            <div class="duties-header">Supervision — Wednesday</div>
-            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
-            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-          </div>
-          <div class="s-footer"><span>★ = Edoardo's duties</span></div>
-        </div>
-
-        <!-- ══════════ THURSDAY ══════════ -->
-        <div class="day-view" id="day-thu">
-          <div class="day-header"><span class="day-header-name">Thursday</span><span class="day-header-count">9 blocks</span></div>
-          <div class="period-list">
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
-            </div>
-            <div class="period-card special gdv">
-              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
-            </div>
-            <div class="period-card g9r">
-              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
-              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
-            </div>
-            <div class="period-card g9r">
-              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
-              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
-            </div>
-            <div class="period-card special gbr">
-              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
-            </div>
-          </div>
-          <div class="duties-section">
-            <div class="duties-header">Supervision — Thursday</div>
-            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
-            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-          </div>
-          <div class="s-footer"><span>★ = Edoardo's duties</span></div>
-        </div>
-
-        <!-- ══════════ FRIDAY ══════════ -->
-        <div class="day-view" id="day-fri">
-          <div class="day-header"><span class="day-header-name">Friday</span><span class="day-header-count">9 blocks</span></div>
-          <div class="period-list">
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card special gdv">
-              <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
-            </div>
-            <div class="period-card g8b">
-              <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
-              <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div></div>
-            </div>
-            <div class="period-card special gbr">
-              <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
-              <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
-            </div>
-            <div class="period-card g8r">
-              <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
-              <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card g9r">
-              <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
-              <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
-            </div>
-            <div class="period-card gfr">
-              <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
-              <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.7rem;color:#8C8880">Planning & grading</div></div>
-            </div>
-          </div>
-          <div class="duties-section">
-            <div class="duties-header">Supervision — Friday</div>
-            <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
-            <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-            <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
-          </div>
-          <div class="s-footer"><span>Mr. Edoardo · Academic Year 2026</span><span>★ = Edoardo's duties</span></div>
-        </div>
-
-      </div><!-- /phone-content -->
-    </div>
+  <!-- Masthead -->
+  <div class="s-masthead">
+    <h1>Mr. <em>Edoardo</em></h1>
+    <p class="s-masthead-sub">Class Schedule · Academic Year 2026</p>
   </div>
-</div>
 
-<p class="label-note">Toca los días dentro del celular · También scrolleable ↕</p>
+  <!-- Legend -->
+  <div class="s-legend">
+    <span class="s-leg-lbl">Grades:</span>
+    <span class="s-leg l9r">9th Red</span>
+    <span class="s-leg l8r">8th Red</span>
+    <span class="s-leg l8b">8th Blue</span>
+    <span class="s-leg l7b">7th Blue</span>
+    <span class="s-leg lfr">Admin</span>
+  </div>
+
+  <!-- Day Tabs -->
+  <div class="day-tabs" id="dayTabs">
+    <button class="day-tab active act-mon" data-day="mon">
+      <span class="day-short">Mon</span><div class="day-accent"></div>
+    </button>
+    <button class="day-tab" data-day="tue">
+      <span class="day-short">Tue</span><div class="day-accent"></div>
+    </button>
+    <button class="day-tab" data-day="wed">
+      <span class="day-short">Wed</span><div class="day-accent"></div>
+    </button>
+    <button class="day-tab" data-day="thu">
+      <span class="day-short">Thu</span><div class="day-accent"></div>
+    </button>
+    <button class="day-tab" data-day="fri">
+      <span class="day-short">Fri</span><div class="day-accent"></div>
+    </button>
+  </div>
+
+  <!-- ══════════ MONDAY ══════════ -->
+  <div class="day-view visible" id="day-mon">
+    <div class="day-header"><span class="day-header-name">Monday</span><span class="day-header-count">10 blocks</span></div>
+    <div class="period-list">
+      <div class="period-card g9r">
+        <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+        <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card special gdv">
+        <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+      </div>
+      <div class="period-card special gbr">
+        <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Mon: Store duty ★</span></div></div>
+      </div>
+      <div class="period-card g7b">
+        <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+        <div class="card-body"><div class="card-grade">7th Blue</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+      </div>
+      <div class="period-card special ghm">
+        <div class="card-time"><div class="card-hrs">1:15<br>1:20</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-hm-bg);color:var(--c-hm)">🏠 Homeroom</span><span class="sp-note" style="color:var(--c-hm)">Monday — all teachers</span></div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.78rem;color:#8C8880">Planning & grading</div></div>
+      </div>
+    </div>
+    <div class="duties-section">
+      <div class="duties-header">Supervision — Monday</div>
+      <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+      <div class="duty-row"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Yair</span><span class="duty-loc">Front Door</span></div>
+      <div class="duty-row"><span class="duty-time">Entry 6:30</span><span class="duty-name">Ms. Sisy</span><span class="duty-loc">Hallway</span></div>
+      <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+      <div class="duty-row"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Jorge</span><span class="duty-loc">Court</span></div>
+      <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+    </div>
+    <div class="s-footer"><span>Mr. Edoardo · Academic Year 2026</span><span>★ = Edoardo's duties</span></div>
+  </div>
+
+  <!-- ══════════ TUESDAY ══════════ -->
+  <div class="day-view" id="day-tue">
+    <div class="day-header"><span class="day-header-name">Tuesday</span><span class="day-header-count">9 blocks</span></div>
+    <div class="period-list">
+      <div class="period-card g9r">
+        <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+        <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Reading Plan</div></div>
+      </div>
+      <div class="period-card special gdv">
+        <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+      </div>
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Science</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card special gbr">
+        <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+      </div>
+      <div class="period-card g7b">
+        <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+        <div class="card-body"><div class="card-grade">7th Blue</div><div class="card-subj">Science</div><div class="card-act">Speaking Project</div></div>
+      </div>
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.78rem;color:#8C8880">Planning & grading</div></div>
+      </div>
+    </div>
+    <div class="duties-section">
+      <div class="duties-header">Supervision — Tuesday</div>
+      <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+      <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+      <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+    </div>
+    <div class="s-footer"><span>★ = Edoardo's duties</span></div>
+  </div>
+
+  <!-- ══════════ WEDNESDAY ══════════ -->
+  <div class="day-view" id="day-wed">
+    <div class="day-header"><span class="day-header-name">Wednesday</span><span class="day-header-count">9 blocks</span></div>
+    <div class="period-list">
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card special gdv">
+        <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Vocabulary</div></div>
+      </div>
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card special gbr">
+        <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+      </div>
+      <div class="period-card g9r">
+        <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+        <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.78rem;color:#8C8880">Planning & grading</div></div>
+      </div>
+    </div>
+    <div class="duties-section">
+      <div class="duties-header">Supervision — Wednesday</div>
+      <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+      <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+      <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+    </div>
+    <div class="s-footer"><span>★ = Edoardo's duties</span></div>
+  </div>
+
+  <!-- ══════════ THURSDAY ══════════ -->
+  <div class="day-view" id="day-thu">
+    <div class="day-header"><span class="day-header-name">Thursday</span><span class="day-header-count">9 blocks</span></div>
+    <div class="period-list">
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
+      </div>
+      <div class="period-card special gdv">
+        <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+      </div>
+      <div class="period-card g9r">
+        <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+        <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
+      </div>
+      <div class="period-card g9r">
+        <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+        <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Quiz</div></div>
+      </div>
+      <div class="period-card special gbr">
+        <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.78rem;color:#8C8880">Planning & grading</div></div>
+      </div>
+    </div>
+    <div class="duties-section">
+      <div class="duties-header">Supervision — Thursday</div>
+      <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+      <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+      <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+    </div>
+    <div class="s-footer"><span>★ = Edoardo's duties</span></div>
+  </div>
+
+  <!-- ══════════ FRIDAY ══════════ -->
+  <div class="day-view" id="day-fri">
+    <div class="day-header"><span class="day-header-name">Friday</span><span class="day-header-count">9 blocks</span></div>
+    <div class="period-list">
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">1st</div><div class="card-hrs">6:45<br>7:40</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card special gdv">
+        <div class="card-time"><div class="card-hrs">7:40<br>8:00</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-dv-bg);color:var(--c-dv)">✦ Devotional</span><span class="sp-note" style="color:var(--c-dv)">Daily — all staff</span></div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">2nd</div><div class="card-hrs">8:00<br>8:55</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+      </div>
+      <div class="period-card g8b">
+        <div class="card-time"><div class="card-per">3rd</div><div class="card-hrs">8:55<br>9:50</div></div>
+        <div class="card-body"><div class="card-grade">8th Blue</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">4th</div><div class="card-hrs">9:50<br>10:45</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div></div>
+      </div>
+      <div class="period-card special gbr">
+        <div class="card-time"><div class="card-hrs">10:45<br>11:15</div></div>
+        <div class="card-body"><div class="sp-inner"><span class="sp-tag" style="background:var(--c-br-bg);color:var(--c-br)">☕ Break</span><span class="sp-note" style="color:var(--c-br)">Supervision</span></div></div>
+      </div>
+      <div class="period-card g8r">
+        <div class="card-time"><div class="card-per">5th</div><div class="card-hrs">11:15<br>12:15</div></div>
+        <div class="card-body"><div class="card-grade">8th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card g9r">
+        <div class="card-time"><div class="card-per">6th</div><div class="card-hrs">12:15<br>1:15</div></div>
+        <div class="card-body"><div class="card-grade">9th Red</div><div class="card-subj">Language Arts</div><div class="card-act">Cambridge Book</div></div>
+      </div>
+      <div class="period-card gfr">
+        <div class="card-time"><div class="card-per">7th</div><div class="card-hrs">1:30<br>2:15</div></div>
+        <div class="card-body"><div class="card-grade">Admin Hours</div><div class="card-subj" style="font-style:italic;font-size:0.78rem;color:#8C8880">Planning & grading</div></div>
+      </div>
+    </div>
+    <div class="duties-section">
+      <div class="duties-header">Supervision — Friday</div>
+      <div class="duty-row isme"><span class="duty-time">Entry 6:30</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Traffic Control</span></div>
+      <div class="duty-row isme"><span class="duty-time">Break 10:45</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+      <div class="duty-row isme"><span class="duty-time">Dismissal</span><span class="duty-name">Mr. Edoardo</span><span class="duty-loc">Store</span></div>
+    </div>
+    <div class="s-footer"><span>Mr. Edoardo · Academic Year 2026</span><span>★ = Edoardo's duties</span></div>
+  </div>
 
 <script>
   const dayColors = { mon:'act-mon', tue:'act-tue', wed:'act-wed', thu:'act-thu', fri:'act-fri' };
@@ -551,28 +451,14 @@
     if (!btn) return;
     const day = btn.dataset.day;
 
-    // Update tabs
-    document.querySelectorAll('.day-tab').forEach(t => {
-      t.className = 'day-tab';
-    });
+    document.querySelectorAll('.day-tab').forEach(t => t.className = 'day-tab');
     btn.classList.add('active', dayColors[day]);
 
-    // Show correct day
     document.querySelectorAll('.day-view').forEach(v => v.classList.remove('visible'));
     document.getElementById('day-' + day).classList.add('visible');
 
-    // Scroll to just below the sticky tabs
-    document.getElementById('phoneContent').scrollTo({ top: 200, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  function setDevice(type, btn) {
-    const frame = document.getElementById('frame');
-    document.querySelectorAll('.dev-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    frame.className = 'phone-frame';
-    if (type === 'tablet')  frame.classList.add('tablet');
-    if (type === 'android') frame.classList.add('android');
-  }
 </script>
 </body>
 </html>
